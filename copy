@@ -12,10 +12,10 @@ elseif SENTINEL_V2 then
 	end
 end
 
-local body = http_request({Url = 'httpshttpbin.orgget'; Method = 'GET'}).Body;
-local decoded = gameGetService('HttpService')JSONDecode(body)
-local hwid_list = {Syn-Fingerprint, Exploit-Guid, Proto-User-Identifier, Sentinel-Fingerprint};
-local hwid = ;
+local body = http_request({Url = 'https://httpbin.org/get'; Method = 'GET'}).Body;
+local decoded = game:GetService('HttpService'):JSONDecode(body)
+local hwid_list = {"Syn-Fingerprint", "Exploit-Guid", "Proto-User-Identifier", "Sentinel-Fingerprint"};
+local hwid = "";
 
 for i, v in next, hwid_list do
 	if decoded.headers[v] then
@@ -26,7 +26,7 @@ end
 
 if hwid then
 	setclipboard(hwid)
-	gameGetService(Players).LocalPlayerKick('copied hwid to clipboard')
+	game:GetService("Players").LocalPlayer:Kick('copied hwid to clipboard')
 else
-	gameGetService(Players).LocalPlayerKick('unable to find hwid')
+	game:GetService("Players").LocalPlayer:Kick('unable to find hwid')
 end
